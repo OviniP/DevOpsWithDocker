@@ -1,2 +1,2 @@
-The DevOps with DOcker course from Unviersity of Helsinki
+The DevOps with DOcker course from the Unviersity of Helsinki
 https://devopswithdocker.com/
