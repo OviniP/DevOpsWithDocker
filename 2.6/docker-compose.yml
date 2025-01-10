@@ -1,0 +1,36 @@
+version: "3.8"
+
+services: 
+    backend:
+        image: backend-app:v1.0
+        container_name: backend-app
+        environment:
+            - REQUEST_ORIGIN=http://localhost:5000
+            - PORT=8081
+            - REDIS_HOST=redis
+            - POSTGRES_HOST=db
+            - POSTGRES_PASSWORD=example
+        ports:
+            - 8081:8081
+            
+    frontend:
+        image: frontend-app:v1.0
+        container_name: frontend-app
+        ports:
+            - 5000:5000 
+            
+    redis:
+        image: redis:latest
+        container_name: redis
+        volumes:
+            - ./redis-data:/data
+        command: ["redis-server", "--appendonly", "yes"]
+        restart: unless-stopped
+        
+    db:
+        image: postgres:17.2
+        restart: unless-stopped 
+        environment:
+            POSTGRES_PASSWORD: example
+        container_name: postgress_db
+        
